@@ -4,11 +4,15 @@ class DivisionController < ApplicationController
   end
 
   def divide_these
-    @first_number = params.fetch("first_num")
-    @second_number = params.fetch("second_num").to_f
+    @first_num = params.fetch("first_num").to_f
+    @second_num = params.fetch("second_num").to_f
 
-    @result =  first_number / @second_number
+  if @second_num == 0
+    @result = "Cannot divide by zero"
+  else
+    @result = @first_num / @second_num
+  end
 
-    render({ :template => "division_templates/divide_result" })
+    render({ :template => "division_templates/division_results" })
   end
 end
